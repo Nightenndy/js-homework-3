@@ -68,9 +68,21 @@ console.log(counting.value());
  * console.log(myPow(2, 3, myPrint)); // 2^3=8
  */
 
-//  console.log(myPow(3, 4, myPrint)); // 3^4=81
+// Задание №3
 
-// console.log(myPow(2, 3, myPrint)); // 2^3=8
+var myPrint = (a, b, res) => `${a}^${b}=${res}`;
+var myPow = (a, b, callback) => {
+  var pow = (c, d) => {
+    if (d !== 1) return c *= pow(c, d - 1);
+
+    return c;
+  };
+  
+  return callback (a, b, pow(a, b));
+};
+
+console.log(myPow(3, 4, myPrint));
+console.log(myPow(2, 3, myPrint));
 
 /*
  * #4
