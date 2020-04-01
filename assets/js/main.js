@@ -75,30 +75,17 @@ console.log(myPow(2, 3, myPrint));
 
 // Задание №4, №5, №6
 
-function fullCarInfo() {
-  return `${this.name} ${this.model}, year ${this.year}, ${this.engine}cc, ${this.used}`;
+function fullInfo() {
+  return `${this.name} ${this.model}, ${this.engine}cc, year ${this.year}, ${this.used}`;
 }
 
 var yearNow = new Date().getFullYear();
 var car = {
-  model: 'FX50 AWD',
-  name: 'Infinite',
-  year: 2019,
-  engine: 5000,
-  info: fullCarInfo,
-  get used() {
-    return yearNow - this.year ? 'used' : 'new';
-  },
-  set used(value) {
-    if (value === 'new' && this.year < yearNow) this.year = yearNow;
-  }
-};
-var car2 = {
+  engine: 2000,
   model: 'Lacetti',
   name: 'Chevrolet',
   year: 2010,
-  engine: 2000,
-  info: fullCarInfo,
+  info: fullInfo,
   get used() {
     return this.year !== yearNow ? 'used' : 'new';
   },
@@ -106,55 +93,55 @@ var car2 = {
     if (value === 'new' && this.year < yearNow) this.year = yearNow;
   }
 };
+var car2 = {
+  engine: 5000,
+  model: 'FX50 AWD',
+  name: 'Infinite',
+  year: 2019,
+  info: fullInfo,
+  get used() {
+    return yearNow - this.year ? 'used' : 'new';
+  },
+  set used(value) {
+    if (value === 'new' && this.year < yearNow) this.year = yearNow;
+  }
+};
 
-
-console.log(car2.info());
+console.log(car.info());
 car.used = 'new';
-console.log(car2.info());
-car.used = 'used';
-console.log(car2.info());
 console.log(car.info());
 car.used = 'used';
-console.log(car.info()); 
+console.log(car.info());
+console.log(car2.info());
+car.used = 'used';
+console.log(car2.info());
 
 // Задание №7
 
-/*
- * #7
- * Создайте функцию myMax(arr), которая в качестве параметра принимает
- * произвольный числовой массив и возвращает максимальное число из переданного ей массива.
- * В реализации функции должен быть применен метод Math.max() и apply().
- */
+var list = [12, 23, 100, 34, 56, 9, 233];
 
-// let list = [12, 23, 100, 34, 56, 9, 233];
+var myMax = (arg) => Math.max.apply(Math, arg);
 
-// console.log(myMax(list)); // 233
+console.log(myMax(list));
 
-/*
- * #8
- *
- * Создайте функцию myMul(a, b), которая будет умножать числа а и b, возвращая результат.
- */
+// Задание №8
 
-/*
- * создайте функции myDouble(n), которая принимает один параметр и  удваивает его.
- * Использовать умножение или другие математические операции внутри функции – запрещено, только bind() и myMul().
- * Функция возвращает результат вычисления.
- */
+function myMul(a, b) {
+  return a * b;
+}
 
-// console.log(myDouble(3)); // = myMul(2, 3) = 6
+var myDouble = myMul.bind(null, 2);
 
-// console.log(myDouble(4)); // = myMul(2, 4) = 8
 
-// console.log(myDouble(5)); // = myMul(2, 5) = 10
+console.log(myDouble(3));
+console.log(myDouble(4));
+console.log(myDouble(5));
 
-// аналогичным образом создайте функцию myTriple(n), которая утраивает принимающий параметр, возвращая результат.
+var myTriple = myMul.bind(null, 3);
 
-// console.log(myTriple(3)); // = myMul(3, 3) = 9
-
-// console.log(myTriple(4)); // = myMul(3, 4) = 12
-
-// console.log(myTriple(5)); // = myMul(3, 5) = 15
+console.log(myTriple(3));
+console.log(myTriple(4));
+console.log(myTriple(5));
 
 /*
  * #9
