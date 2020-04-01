@@ -56,18 +56,6 @@ console.log(counting.value(200));
 counting.increment();
 console.log(counting.value()); 
 
-/*
- * #3
- *
- * Создайте функцию myPow(a, b, myPrint). Внутри реализуйте рекурсию для подсчета результата возведения числа a в степень b.
- * функция myPrint(a, b, res) – глобальная функция, которая должна генерировать из параметров a, b, res строку вида 'a^b=res' и возвращать ее
- * myPrint() должна быть передана в myPow() как параметр и вызвана внутри как callback-функция
- * функция myPow() в качестве возвращаемого значения принимает результат myPrint()
- * Например:
- * console.log(myPow(3, 4, myPrint)); // 3^4=81
- * console.log(myPow(2, 3, myPrint)); // 2^3=8
- */
-
 // Задание №3
 
 var myPrint = (a, b, res) => `${a}^${b}=${res}`;
@@ -84,53 +72,52 @@ var myPow = (a, b, callback) => {
 console.log(myPow(3, 4, myPrint));
 console.log(myPow(2, 3, myPrint));
 
-/*
- * #4
- *
- * Создайте несколько однотипных объектов для описания автомобиля. Соблюдайте следующие правила, используйте следующие поля:
- * имя объекта car – обязательно и необходимое для тестирования, дальнейшее именование объектов – на ваше усмотрение
- * car.engine – объем двигателя, числовое поле
- * car.model – модель авто, строка
- * car.name – бренд авто, строка
- * car.year – год выпуска, число
- * car.used – строка для описания состояния авто, допускаются значения 'used' и 'new'
- *
- * #5
- *
- * Для созданных ранее объектов определите метод info(), используя ключевое слово this.
- * данный метод должен формировать и возвращать строку с полной информацией об автомобиле, например:
- * Chevrolet Lacetti, 2000cc, year 2010, used
- * Infinite FX50 AWD, 5000cc, year 2019, new
- * пробелы, запятые, символы cc и текст – имеют значение и проверяются при тестировании кода
- *
- * #6
- *
- * Для созданных ранее объектов измените свойство used, используя аксессоры (геттер и сеттер).
- * - используйте текущий год либо непосредственно в своем коде, либо с помощью глобальной переменной, например, yearNow
- * - если год выпуска автомобиля отличается от текущего года, геттер used должен выводить текст 'used'
- * - если год выпуска автомобиля совпадает с текущим годом, геттер used должен выводить текст 'new'
- * - если сеттеру used присвоено значение 'new', при этом года выпуска автомобиля отличается от текущего года,
- * - необходимо изменить год выпуска автомобиля, установив в качестве значения текущий год
- * - если сеттеру used присвоено значение 'used', ничего делать не нужно
- */
 
-// let yearNow = new Date().getFullYear(); // получить текущий год как число
+// Задание №4, №5, №6
 
-// console.log(car.info()); // Chevrolet Lacetti, 2000cc, year 2010, used
+function fullCarInfo() {
+  return `${this.name} ${this.model}, year ${this.year}, ${this.engine}cc, ${this.used}`;
+}
 
-// car.used = 'new';
+var yearNow = new Date().getFullYear();
+var car = {
+  model: 'FX50 AWD',
+  name: 'Infinite',
+  year: 2019,
+  engine: 5000,
+  info: fullInfo,
+  get used() {
+    return yearNow - this.year ? 'used' : 'new';
+  },
+  set used(value) {
+    if (value === 'new' && this.year < yearNow) this.year = yearNow;
+  }
+};
+var car2 = {
+  model: 'Lacetti',
+  name: 'Chevrolet',
+  year: 2010,
+  engine: 2000,
+  info: fullInfo,
+  get used() {
+    return this.year !== yearNow ? 'used' : 'new';
+  },
+  set used(value) {
+    if (value === 'new' && this.year < yearNow) this.year = yearNow;
+  }
+};
 
-// console.log(car.info()); // Chevrolet Lacetti, 2000cc, year 2019, new -- год изменен
 
-// car.used = 'used';
+console.log(car2.info());
+car.used = 'new';
+console.log(car2.info());
+car.used = 'used';
+console.log(car2.info());
+console.log(car.info());
+car.used = 'used';
+console.log(car.info()); 
 
-// console.log(car.info()); // Chevrolet Lacetti, 2000cc, year 2019, new -- изменения не выполняются
-
-// console.log(car2.info()); // Infinite FX50 AWD, 5000cc, year 2019, new
-
-// car.used = 'used';
-
-// console.log(car2.info()); // Infinite FX50 AWD, 5000cc, year 2019, new -- изменения не выполняются
+// Задание №7
 
 /*
  * #7
