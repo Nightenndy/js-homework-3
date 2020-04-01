@@ -143,20 +143,20 @@ console.log(myTriple(3));
 console.log(myTriple(4));
 console.log(myTriple(5));
 
-/*
- * #9
- *
- * Постройте функцию myUniq(arr), которая будет принимать произвольный массив
- * повторяющихся примитивных значений (например, имена пользователей или числа ).
- * Функция должна вернуть коллекцию уникальных значений.
- * В реализации разрешено использование set.
- * Любые условные операторы – запрещены и объекты.
- */
+// Задание №9
 
-// let notUniqNums = [1, 1, 2, 3, 4, 5, 6, 7];
+var notUniqNums = [1, 1, 2, 3, 4, 5, 6, 7];
+var notUniqStrings = ['Bob', 'Kate', 'Jhon', 'Tom', 'Jhon', 'Kate', 'Tom', 'Bob', 'Jhon', 'Tom'];
 
-// let notUniqStrings = ['Bob', 'Kate', 'Jhon', 'Tom', 'Jhon', 'Kate', 'Tom', 'Bob', 'Jhon', 'Tom'];
+var myUniq = (arr) => {
+  var set = new Set();
 
-// console.log(myUniq(notUniqNums));
+  arr.forEach((value) => {
+    set.add(value);
+  });
 
-// console.log(myUniq(notUniqStrings));
+  return set;
+};
+
+console.log(myUniq(notUniqNums));
+console.log(myUniq(notUniqStrings));
