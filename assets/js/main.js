@@ -85,7 +85,7 @@ var car = {
   name: 'Infinite',
   year: 2019,
   engine: 5000,
-  info: fullInfo,
+  info: fullCarInfo,
   get used() {
     return yearNow - this.year ? 'used' : 'new';
   },
@@ -98,7 +98,7 @@ var car2 = {
   name: 'Chevrolet',
   year: 2010,
   engine: 2000,
-  info: fullInfo,
+  info: fullCarInfo,
   get used() {
     return this.year !== yearNow ? 'used' : 'new';
   },
