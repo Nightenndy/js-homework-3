@@ -2,8 +2,8 @@ console.log('Sample JavaScript #3 HW #17');
 
 // Задание №1
 
-let counter = (function () {
-  let count = 0;
+var counter = (function () {
+  var count = 0;
 
   return function (num) {
     count = num === undefined ? count : num;
@@ -20,44 +20,41 @@ console.log(counter(500));
 console.log(counter());
 console.log(counter(0));
 console.log(counter());
-/*
- * #2
- *
- * Создайте функцию counting, которая должна реализовать три метода с помощью замыкания:
- * первоначальное значение счетчика – 0
- * counting.value() – возвращает значение счетчика
- * counting.value(n) – устанавливает значение счетчика, возвращает новое значение
- * counting.increment() – увеличивает значение счетчика на 1
- * counting.decrement() – уменьшает значение счетчика на 1
- */
 
-// console.log(counting.value()); // 0
+// Задание №2
 
-// counting.increment();
+var counting = (function (){
+  var count = 0;
 
-// counting.increment();
+  return {
+    value(num) {
+    if (num !== undefined) count = num;
 
-// counting.increment();
+    return count;},
 
-// console.log(counting.value()); // 3
+    decrement() {
+      count--;
+    },
+    increment() {
+      count++;
+    },
+  };
+}());
 
-// counting.decrement();
-
-// counting.decrement();
-
-// console.log(counting.value()); // 1
-
-// console.log(counting.value(100)); // 100
-
-// counting.decrement();
-
-// console.log(counting.value()); // 99
-
-// console.log(counting.value(200)); // 200
-
-// counting.increment();
-
-// console.log(counting.value()); // 201
+console.log(counting.value());
+counting.increment();
+counting.increment();
+counting.increment();
+console.log(counting.value());
+counting.decrement();
+counting.decrement();
+console.log(counting.value());
+console.log(counting.value(100));
+counting.decrement();
+console.log(counting.value());
+console.log(counting.value(200));
+counting.increment();
+console.log(counting.value()); 
 
 /*
  * #3
